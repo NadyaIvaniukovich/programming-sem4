@@ -21,4 +21,8 @@ public class AgeLimitCriteria implements Criteria {
         }
         return 1;
     }
+
+    public int getAgeLimit() {
+        return ageLimit;
+    }
 }

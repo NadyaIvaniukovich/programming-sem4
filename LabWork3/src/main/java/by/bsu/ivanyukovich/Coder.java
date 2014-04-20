@@ -32,7 +32,7 @@ public class Coder {
             }
             return group1 + group2 + group3;
         }
-        return null;
+        return "Incorrect data.";
     }
 
 }

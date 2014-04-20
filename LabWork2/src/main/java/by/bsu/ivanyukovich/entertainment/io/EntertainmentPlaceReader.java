@@ -22,7 +22,7 @@ public class EntertainmentPlaceReader {
         this.fileName = fileName;
     }
 
-    public List<EntertainmentPlace> read() throws IOException {
+    public List<EntertainmentPlace> read() throws IOException, InvalidEntertainmentPlaceException {
         try(FileInputStream in = new FileInputStream(fileName);
             Scanner scanner = new Scanner(in)
         ){
@@ -36,6 +36,7 @@ public class EntertainmentPlaceReader {
                     case "Museum": places.add(parseMuseum(row)); break;
                     case "Park": places.add(parsePark(row)); break;
                     case "Restaurant": places.add(parseRestaurant(row)); break;
+                    default: throw new InvalidEntertainmentPlaceException("Type " + row[0] + " is unknown.");
                 }
 
             }
@@ -43,6 +44,7 @@ public class EntertainmentPlaceReader {
         }
     }
     private Cinema parseCinema(String... properties){
+        assert properties.length > 7;
         Cinema cinema = new Cinema();
         cinema.setName(properties[1]);
         cinema.setStayTimeLimited(properties[2].equals("true"));
@@ -55,6 +57,7 @@ public class EntertainmentPlaceReader {
     }
 
     private Circus parseCircus(String... properties){
+        assert properties.length > 7;
         Circus circus = new Circus();
         circus.setName(properties[1]);
         circus.setStayTimeLimited(properties[2].equals("true"));
@@ -66,6 +69,7 @@ public class EntertainmentPlaceReader {
     }
 
     private Club parseClub(String... properties){
+        assert properties.length > 7;
         Club club = new Club();
         club.setName(properties[1]);
         club.setStayTimeLimited(properties[2].equals("true"));
@@ -78,6 +82,7 @@ public class EntertainmentPlaceReader {
     }
 
     private Museum parseMuseum(String... properties){
+        assert properties.length > 7;
         Museum museum = new Museum();
         museum.setName(properties[1]);
         museum.setStayTimeLimited(properties[2].equals("true"));
@@ -90,6 +95,7 @@ public class EntertainmentPlaceReader {
     }
 
     private Park parsePark(String... properties){
+        assert properties.length > 3;
         Park park = new Park();
         park.setName(properties[1]);
         park.setStayTimeLimited(properties[2].equals("true"));
@@ -98,6 +104,7 @@ public class EntertainmentPlaceReader {
     }
 
     private Restaurant parseRestaurant(String... properties){
+        assert properties.length > 7;
         Restaurant restaurant = new Restaurant();
         restaurant.setName(properties[1]);
         restaurant.setStayTimeLimited(properties[2].equals("true"));

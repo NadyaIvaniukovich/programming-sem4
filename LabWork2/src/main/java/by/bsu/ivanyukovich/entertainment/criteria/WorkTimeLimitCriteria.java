@@ -23,4 +23,12 @@ public class WorkTimeLimitCriteria implements Criteria{
         }
         return 1;
     }
+
+    public int getOpeningTime() {
+        return openingTime;
+    }
+
+    public int getClosingTime() {
+        return closingTime;
+    }
 }

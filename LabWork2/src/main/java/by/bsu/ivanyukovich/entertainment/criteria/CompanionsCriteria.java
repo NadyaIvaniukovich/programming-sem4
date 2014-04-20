@@ -25,4 +25,8 @@ public class CompanionsCriteria implements Criteria {
         }
         return count;
     }
+
+    public List<CompanionType> getCompanions() {
+        return companions;
+    }
 }
